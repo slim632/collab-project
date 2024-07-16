@@ -1,0 +1,9 @@
+- flash.each do |type, message|
+  .w-full.p-4.mb-4.text-center
+    .rounded-md.shadow-sm
+      - if type == 'success'
+        .bg-green-500.text-white.p-3 = message
+      - elsif type == 'error'
+        .bg-red-500.text-white.p-3 = message
+      - else
+        .bg-blue-200.text-gray-700.p-3 = message

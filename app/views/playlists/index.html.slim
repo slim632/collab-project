@@ -1,0 +1,11 @@
+.container.mx-auto.px-4.py-8
+  h1.text-3xl.font-bold.mb-4 Playlists
+
+  .flex.justify-between.mb-4
+    .w-full.max-w-sm
+       = form_for Playlist.new do |f|
+        = f.text_field :title, placeholder: "Create New Playlist...", class: "rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        = f.submit "Create", class: "ml-2 inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400 disabled:opacity-50"
+
+  #playlist-list.list-none.p-0
+    = render(@playlists) || 'No playlists found.'

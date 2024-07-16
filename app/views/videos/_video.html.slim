@@ -1,0 +1,9 @@
+.bg-white.shadow-md.rounded-md.overflow-hidden
+  img.w-full.h-48.object-cover src=video.thumbnail_url alt="Video Thumbnail"
+  .p-4
+    h3.text-lg.font-medium.mb-2 = video.title
+    p.text-gray-600.text-sm.mb-2 = truncate video.description
+    .flex.items-center.text-gray-500.text-sm
+      span = "#{video.view_count} views"
+
+    = render 'add_to_playlist', video: video

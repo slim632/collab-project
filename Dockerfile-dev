@@ -1,0 +1,19 @@
+FROM ruby:3.3.4
+
+RUN wget --quiet --no-check-certificate -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ bookworm-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+
+RUN apt update -qq && \
+    apt install -y \
+      build-essential \
+      libxml2-dev libxslt1-dev nodejs postgresql-client-16
+
+ENV APP_HOME /app
+RUN mkdir $APP_HOME
+
+WORKDIR $APP_HOME
+COPY Gemfile Gemfile.lock $APP_HOME/
+
+RUN gem install bundler && bundle install --jobs 20 --retry 5
+
+EXPOSE 3000

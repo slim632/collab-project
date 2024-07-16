@@ -1,0 +1,16 @@
+.container.mx-auto.px-4.py-8
+  h1.text-3xl.font-bold.mb-4 Explore
+  .float-right
+    = link_to "Load videos from Mock YouTube API", fetch_videos_path, data: { turbo_method: :post }, class: "btn"
+
+  .flex.justify-center.mb-8
+    .w-full.max-w-sm
+      = form_tag root_path, method: :get do
+        = text_field_tag :keyword, params[:keyword], placeholder: "Type keyword...", class: "rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        = submit_tag "Search", class: "btn"
+
+  #video-list.grid.grid-cols-5.gap-4
+    = render(partial: 'videos/video', collection: @videos, as: :video) || 'No videos.'
+
+  .flex.justify-center.mt-8
+    = render 'shared/pagination', collection: @videos

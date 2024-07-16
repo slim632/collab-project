@@ -1,0 +1,5 @@
+.container.mx-auto.px-4.py-8
+  h1.text-3xl.font-bold.mb-4 = @playlist.title
+
+  #video-list.grid.grid-cols-1.gap-4
+    = render(@playlist.playlist_videos) || 'No videos found.'

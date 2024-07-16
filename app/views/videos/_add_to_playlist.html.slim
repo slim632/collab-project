@@ -1,0 +1,7 @@
+- if @playlists.any?
+  = form_for PlaylistVideo.new do |f|
+    = f.hidden_field :video_id, value: video.id
+    = f.select :playlist_id, @playlists.map { |playlist| [playlist.title, playlist.id] }
+    = f.submit "Add", class: "btn"
+- else
+  = link_to "Create a new playlist", playlists_path, class: "btn"

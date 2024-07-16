@@ -1,0 +1,6 @@
+.bg-white.shadow-md.rounded-md.overflow-hidden.p-4.mb-4
+  .flex.justify-between.items-center
+    .flex-grow
+      img.w-16.h-16.object-cover.mr-4(src= playlist_video.video.thumbnail_url alt="Video Thumbnail")
+      a(href="#" class="text-lg font-medium hover:text-blue-500") = playlist_video.video.title
+    = link_to 'Remove', playlist_playlist_video_path(playlist_video.playlist, playlist_video), class: "btn", data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }

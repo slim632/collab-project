@@ -1,0 +1,30 @@
+services:
+  postgres:
+    image: postgres:16.3
+    shm_size: 1g
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-16.3:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+  redis:
+    image: redis:7.2
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: echo 'Ready'
+    ports:
+      - 3000:3000
+    volumes:
+      - "./:/app:rw,cached"
+    environment:
+      DATABASE_URL: postgresql://postgres@postgres/
+      REDIS_URL: redis://redis:6379/0
+    links:
+      - postgres
+      - redis
+volumes:
+  postgres-16.3:
+    external: true

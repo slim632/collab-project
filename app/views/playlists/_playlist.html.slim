@@ -1,0 +1,4 @@
+.bg-white.shadow-md.rounded-md.p-4.mb-4
+  .flex.justify-between
+    = link_to playlist.title, resource_path(playlist), class: "text-lg font-medium hover:text-blue-500"
+    span.text-gray-500 = "#{playlist.videos.count} videos"

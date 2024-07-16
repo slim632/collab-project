@@ -1,0 +1,15 @@
+- visible_pages = collection.visible_pages
+- if visible_pages.size > 1
+  nav(aria-label="Pagination")
+    ul.inline-flex.list-style-none.rounded-md
+      - unless collection.first_page?
+        li = link_to "Previous", url_for(page: collection.prev_page), class: "rounded-l-md border border-gray-300 bg-white px-3 py-2 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
+      - visible_pages.each do |page|
+        - if page == collection.current_page
+          li
+            span.border.border-gray-300.text-gray-500.px-3.py-2.rounded-md = page
+        - else
+          li
+            = link_to page, url_for(page: page), class: "border border-gray-300 text-gray-500 px-3 py-2 rounded-md hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      - unless collection.last_page?
+        li = link_to "Next", url_for(page: collection.next_page), class: "rounded-r-md border border-gray-300 bg-white px-3 py-2 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-blue-500"
